@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const profile = process.argv[2];
 const token = process.argv[3];
-const duration = 86400;
+const duration = process.argv[4] || 86400;
 
 let creds;
 let credentials;
