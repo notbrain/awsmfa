@@ -7,7 +7,7 @@ npm i -g @notbrain/awsmfa (COMING SOON)
 ```
 git clone --depth 1 https://github.com/notbrain/awsmfa
 cd awsmfa
-npm i -g 
+npm i -g
 ```
 
 ## Requirements
@@ -54,3 +54,21 @@ aws_session_token = FQoDYXdzENj//////////wEaDBSRyXR9SFAmXO/r/yKwAVDM2JNEGzIT4xAc
 ```
 
 Now, when you use the AWS CLI, it defaults to using the session you last started. If you think what this package offers is too simplistic and you want more control, check out [broamski/aws-mfa](https://github.com/broamski/aws-mfa).
+
+## Shell Variable Export Option
+
+If you set `AWSMFA_CACHE_ENABLED=true`, awsmfa will create a file named whatever the value of `AWSMFA_TIMEOUT_FILE` is. For example if you set:
+
+```
+AWSMFA_CACHE_ENABLED=true|false
+AWSMFA_TIMEOUT_FILE="$HOME/.awsmfa/timeout"
+```
+
+The file `$HOME/.awsmfa/timeout` will contain
+
+```
+export AWSMFA_EXPIRE_EPOCH=<epoch_of_expiration>
+export AWSMFA_PROFILE=<profile_name>
+```
+
+which can be used to calculate the expiration time and current profile active for use in custom shell prompts.
